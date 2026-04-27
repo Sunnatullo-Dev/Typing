@@ -12,17 +12,17 @@ services:
       - key: DEBUG
         value: "False"
       - key: ALLOWED_HOSTS
-        value: your-app.onrender.com
+        value: typing-champion.onrender.com
       - key: CSRF_TRUSTED_ORIGINS
-        value: https://your-app.onrender.com
+        value: https://typing-champion.onrender.com
       - key: DB_DIR
         value: /opt/render/project/src/data
       - key: MEDIA_ROOT
-        value: /opt/render/project/src/media
+        value: /opt/render/project/src/data/media
     healthCheckPath: /healthz
     autoDeploy: true
     disk:
       name: data
       mountPath: /opt/render/project/src/data
       sizeGB: 1
-    postDeployCommand: python manage.py migrate
+    postDeployCommand: python manage.py migrate && python seed_lessons.py
